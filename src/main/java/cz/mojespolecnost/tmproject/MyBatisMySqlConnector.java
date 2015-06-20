@@ -45,13 +45,10 @@ public class MyBatisMySqlConnector
         try {
             UserMapper mapper = session.getMapper(UserMapper.class);
             out = mapper.selectUser(userID);
-        } catch (Exception e) {
-            e.printStackTrace();
-            out = UserNull.getUserNull();
-        } finally {
+        } finally { //NOTE does not throw any exceptions, am I right?
             session.close();
         }
-         return out;
+         return out == null ? UserNull.getUserNull() : out;
     }
     
 

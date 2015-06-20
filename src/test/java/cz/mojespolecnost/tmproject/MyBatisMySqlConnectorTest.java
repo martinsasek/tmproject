@@ -58,6 +58,15 @@ public class MyBatisMySqlConnectorTest {
         assertEquals(6, (int) us1.getUserID());
         assertEquals("Roman Cerny", us1.getName());        
         
+        User notFound = conn.getUserByID(9); 
+        assertEquals(-1, (int) notFound.getUserID());
+        assertEquals("none", notFound.getName());     
+        
+        notFound = conn.getUserByID(-2); 
+        assertEquals(-1, (int) notFound.getUserID());
+        assertEquals("none", notFound.getName());   
+        
+        
         
     }
     
