@@ -6,20 +6,15 @@
 
 package cz.mojespolecnost.tmproject;
 
+import org.apache.ibatis.annotations.Select;
+
 /**
+ *
  * @author indian
  */
-public interface User {
-
-    String getAddress();
-
-    String getName();
-
-    Integer getUserGroupID();
-
-    Integer getUserID();
-
-    @Override
-    String toString();
+public interface UserMapper {
+    
+    //@Select("SELECT * FROM User WHERE userID = #{id}")
+    UserDO selectUser(int id);
     
 }
