@@ -6,15 +6,23 @@
 
 package cz.mojespolecnost.tmproject;
 
-import org.apache.ibatis.annotations.Select;
+import java.util.List;
 
 /**
  *
  * @author indian
  */
 public interface UserMapper {
+       
+    public UserDO selectUser(int id);
     
-    //@Select("SELECT * FROM User WHERE userID = #{id}")
-    UserDO selectUser(int id);
+    
+    public List <UserDO> getAllUsers();
+    
+//    public void insertUser(UserDO user);
+//    
+//    public void deleteUser(int id);
+//    
+//    public void updateUser(UserDO user);
     
 }

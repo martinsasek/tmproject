@@ -6,8 +6,8 @@
 
 package cz.mojespolecnost.tmproject;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,10 +64,15 @@ public class MyBatisMySqlConnectorTest {
         
         notFound = conn.getUserByID(-2); 
         assertEquals(-1, (int) notFound.getUserID());
-        assertEquals("none", notFound.getName());   
-        
-        
-        
+        assertEquals("none", notFound.getName());           
     }
+    
+    @org.junit.Test
+    public void testGetAllUsers() {
+        List<? extends User> allUsers = conn.getAllUsers();
+        //SPOCK to test all elements?
+        assertEquals(6, allUsers.size());
+        assertEquals(3, (int) allUsers.get(2).getUserID());        
+    }    
     
 }

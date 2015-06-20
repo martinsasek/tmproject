@@ -9,4 +9,8 @@
    SELECT * FROM User WHERE userID = #{id}
   </select>
   
+  <select id="getAllUsers" resultType="cz.mojespolecnost.tmproject.UserDO">
+   SELECT * FROM User
+  </select>  
+  
 </mapper>

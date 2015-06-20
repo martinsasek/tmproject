@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -45,12 +46,21 @@ public class MyBatisMySqlConnector
         try {
             UserMapper mapper = session.getMapper(UserMapper.class);
             out = mapper.selectUser(userID);
+            return out == null ? UserNull.getUserNull() : out;
         } finally { //NOTE does not throw any exceptions, am I right?
             session.close();
-        }
-         return out == null ? UserNull.getUserNull() : out;
+        }         
     }
     
+    public List <? extends User> getAllUsers(){
+        SqlSession session = sqlSessionFactory.openSession();       
+        try {
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            return mapper.getAllUsers();
+        } finally {
+            session.close();
+        }
+    }       
 
     
     private static void oldMain( String[] args )
