@@ -19,10 +19,10 @@ public interface UserMapper {
     
     public List <UserDO> getAllUsers();
     
-//    public void insertUser(UserDO user);
-//    
-//    public void deleteUser(int id);
-//    
-//    public void updateUser(UserDO user);
+    public void insertUser(UserDO user);
+    
+    public void deleteUser(int id);
+    
+    public void updateUser(UserDO user);
     
 }

@@ -21,6 +21,38 @@ public class UserDO implements User {
     private String address;
     private Integer userGroupID;
 
+    /**
+     * Construct new UserDO so far for testing purposes.
+     * userID is ommitted on purpose because it should be set by the database engine.
+     * @param name
+     * @param address
+     * @param userGroupID 
+     */
+    public UserDO(String name, String address, Integer userGroupID) {        
+        this.name = name;
+        this.address = address;
+        this.userGroupID = userGroupID;
+    }
+    
+    /**
+     * Transfers all info from User to UserDO, used to convert
+     * communication of MyBatisMySqlConnector in User interfaces
+     * to the communication with MySQL database in UserDO.
+     * 
+     * @param user 
+     */
+    public UserDO(User user){
+        this.userID = new Integer(user.getUserID());
+        this.name = new String(user.getName());
+        this.address = new String(user.getAddress());
+        this.userGroupID = new Integer(user.getUserGroupID());
+    }
+
+    public UserDO() {
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "User{" + "userID=" + userID + ", name=" + name + ", address=" + address + ", userGroupID=" + userGroupID + '}';

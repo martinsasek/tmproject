@@ -11,6 +11,20 @@
   
   <select id="getAllUsers" resultType="cz.mojespolecnost.tmproject.UserDO">
    SELECT * FROM User
-  </select>  
+  </select> 
+  
+  <insert id="insertUser" parameterType="cz.mojespolecnost.tmproject.UserDO" useGeneratedKeys="true" keyProperty="userID">
+   INSERT INTO User(name, address, userGroupID)
+    VALUES(#{name}, #{address}, #{userGroupID})
+  </insert> 
+  
+  <update id="updateUser" parameterType="cz.mojespolecnost.tmproject.UserDO">
+   UPDATE User SET name = #{name}, address = #{address}, userGroupID = #{userGroupID}
+    WHERE userID = #{userID}
+  </update>   
+  
+  <delete id="deleteUser" parameterType="int">
+    DELETE FROM User WHERE userID = #{id}
+  </delete>        
   
 </mapper>

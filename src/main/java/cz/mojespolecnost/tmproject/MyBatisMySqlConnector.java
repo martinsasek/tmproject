@@ -61,31 +61,65 @@ public class MyBatisMySqlConnector
             session.close();
         }
     }       
+    
+    public void insertUser(UserDO insertedUser){
+        SqlSession session = sqlSessionFactory.openSession();       
+        try {
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            mapper.insertUser(insertedUser);
+            session.commit();
+        } finally {
+            session.close();
+        }        
+    }
+    
+    public void deleteUser(int userID){
+        SqlSession session = sqlSessionFactory.openSession();       
+        try {
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            mapper.deleteUser(userID);
+            session.commit();
+        } finally {
+            session.close();
+        }        
+    }
+    
+    public void updateUser(UserDO updatedUser){
+        SqlSession session = sqlSessionFactory.openSession();       
+        try {
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            mapper.updateUser(updatedUser);
+            session.commit();
+        } finally {
+            session.close();
+        }        
+    }    
+    
 
     
-    private static void oldMain( String[] args )
-    {
-        String url = "jdbc:mysql://localhost:3306/";
-        String dbName = "topmonks";
-        String driver = "com.mysql.jdbc.Driver";
-        String userName = "topmonks";
-        String password = "topmonksPass";        
-        try {
-            Class.forName(driver).newInstance();
-            Connection conn = DriverManager.getConnection(url+dbName, userName, password);
-                                   
-            Statement st = conn.createStatement();
-            ResultSet res = st.executeQuery("SELECT User.name, User.address, UserGroup.permissions FROM User LEFT JOIN UserGroup ON User.userGroupID=UserGroup.userGroupID");
-            while (res.next()){
-                System.out.println(String.format("%s   %s    %s", res.getString("name"), 
-                        res.getString("address"), res.getString("permissions")));
-            }
-            
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-    }
+//    private static void oldMain( String[] args )
+//    {
+//        String url = "jdbc:mysql://localhost:3306/";
+//        String dbName = "topmonks";
+//        String driver = "com.mysql.jdbc.Driver";
+//        String userName = "topmonks";
+//        String password = "topmonksPass";        
+//        try {
+//            Class.forName(driver).newInstance();
+//            Connection conn = DriverManager.getConnection(url+dbName, userName, password);
+//                                   
+//            Statement st = conn.createStatement();
+//            ResultSet res = st.executeQuery("SELECT User.name, User.address, UserGroup.permissions FROM User LEFT JOIN UserGroup ON User.userGroupID=UserGroup.userGroupID");
+//            while (res.next()){
+//                System.out.println(String.format("%s   %s    %s", res.getString("name"), 
+//                        res.getString("address"), res.getString("permissions")));
+//            }
+//            
+//            conn.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        
+//    }
     
 }

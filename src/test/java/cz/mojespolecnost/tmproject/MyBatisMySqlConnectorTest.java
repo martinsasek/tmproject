@@ -75,4 +75,32 @@ public class MyBatisMySqlConnectorTest {
         assertEquals(3, (int) allUsers.get(2).getUserID());        
     }    
     
+    @org.junit.Test
+    public void testInsertUpdateDelete(){
+        // testing insert
+        UserDO inserted =  new UserDO ("Karel Hlavnicka", "Rostacka 18", 3);                        
+        assertTrue(inserted.getUserID() == null);        
+        conn.insertUser(inserted);
+        assertTrue(inserted.getUserID() != null);        
+        assertEquals(7, conn.getAllUsers().size());
+        User temporary = conn.getUserByID(inserted.getUserID());
+        assertEquals(temporary.getUserID(), inserted.getUserID());
+        assertEquals(temporary.getName(), inserted.getName());
+        assertEquals(temporary.getAddress(), inserted.getAddress());
+        assertEquals(temporary.getUserGroupID(), inserted.getUserGroupID());
+        
+        //testing update on the temporary inserted object
+        UserDO updated = new UserDO("Karel Kulatoucky", "Rostacka 18", 4);
+        updated.setUserID(temporary.getUserID());
+        conn.updateUser(updated);
+        //using old ID byt the data should be new
+        User tempUpdated = conn.getUserByID(temporary.getUserID());
+        assertEquals(tempUpdated.getUserID(), temporary.getUserID());
+        assertEquals(tempUpdated.getName(), updated.getName());        
+        
+        //testing delete of the temporary object
+        conn.deleteUser(temporary.getUserID());
+        assertEquals(6, conn.getAllUsers().size());
+    }
+    
 }

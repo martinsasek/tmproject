@@ -9,7 +9,7 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/topmonks"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/topmonksTesting"/>
         <property name="username" value="topmonks"/>
         <property name="password" value="topmonksPass"/>
       </dataSource>
