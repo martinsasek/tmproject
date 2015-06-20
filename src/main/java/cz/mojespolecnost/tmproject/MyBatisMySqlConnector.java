@@ -11,9 +11,17 @@ import java.sql.Statement;
  * Hello world!
  *
  */
-public class TMPWebApp 
+public class MyBatisMySqlConnector 
 {
+    
+    
     public static void main( String[] args )
+    {
+        //TODO printUser
+        
+    }
+    
+    private static void oldMain( String[] args )
     {
         String url = "jdbc:mysql://localhost:3306/";
         String dbName = "topmonks";
@@ -37,4 +45,5 @@ public class TMPWebApp
         }
         
     }
+    
 }
