@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cz.mojespolecnost.tmproject;
+package cz.mojespolecnost.tmproject.persistence;
 
 /**
  * Data object used to communicate with database.
@@ -42,7 +42,9 @@ public class UserDO implements User {
      * @param user 
      */
     public UserDO(User user){
-        this.userID = new Integer(user.getUserID());
+        if (user.getUserID() != null){
+            this.userID = new Integer(user.getUserID());
+        }        
         this.name = new String(user.getName());
         this.address = new String(user.getAddress());
         this.userGroupID = new Integer(user.getUserGroupID());

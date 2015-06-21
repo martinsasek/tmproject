@@ -16,6 +16,6 @@
     </environment>
   </environments>
   <mappers>
-      <mapper resource="cz/mojespolecnost/tmproject/UserMapper.xml"/>
+      <mapper resource="cz/mojespolecnost/tmproject/persistence/UserMapper.xml"/>
   </mappers>
 </configuration>

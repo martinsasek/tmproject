@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
-package cz.mojespolecnost.tmproject;
+package cz.mojespolecnost.tmproject.persistence;
 
+import cz.mojespolecnost.tmproject.persistence.UserDO;
+import cz.mojespolecnost.tmproject.persistence.MyBatisMySqlConnector;
+import cz.mojespolecnost.tmproject.persistence.User;
 import java.io.IOException;
 import java.util.List;
 import org.junit.After;
@@ -28,7 +31,7 @@ public class MyBatisMySqlConnectorTest {
     public static void setUpClass() throws IOException{
 //        File config = new File("/home/indian/java/tmproject/src/main/resources/cz/mojespolecnost/tmproject/myBatisTestingConfig.xml");
 //        assertTrue(config.exists());
-        String resource = "cz/mojespolecnost/tmproject/myBatisTestingConfig.xml";
+        String resource = "cz/mojespolecnost/tmproject/persistence/myBatisTestingConfig.xml";
         conn = new MyBatisMySqlConnector(resource);
     }
     

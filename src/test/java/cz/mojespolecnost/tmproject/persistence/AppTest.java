@@ -1,4 +1,4 @@
-package cz.mojespolecnost.tmproject;
+package cz.mojespolecnost.tmproject.persistence;
 
 //
 //

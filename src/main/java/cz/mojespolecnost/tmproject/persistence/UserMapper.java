@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cz.mojespolecnost.tmproject;
+package cz.mojespolecnost.tmproject.persistence;
 
 import java.util.List;
 
