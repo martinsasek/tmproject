@@ -10,7 +10,7 @@ package cz.mojespolecnost.tmproject.persistence;
  * Null implementation of User interface.
  * @author indian
  */
-public class UserNull implements User{
+public class UserNull extends UserDO{
 
     private static final UserNull instance = new UserNull();
     

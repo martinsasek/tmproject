@@ -49,7 +49,7 @@ public class MyBatisMySqlConnectorTest {
 
     @org.junit.Test
     public void testGetUser() {
-        User us1 = conn.getUserByID(1);
+        UserDO us1 = conn.getUserByID(1);
         assertEquals(1, (int) us1.getUserID());
         assertEquals("Tonik Chlupaty", us1.getName());
         
@@ -61,7 +61,7 @@ public class MyBatisMySqlConnectorTest {
         assertEquals(6, (int) us1.getUserID());
         assertEquals("Roman Cerny", us1.getName());        
         
-        User notFound = conn.getUserByID(9); 
+        UserDO notFound = conn.getUserByID(9); 
         assertEquals(-1, (int) notFound.getUserID());
         assertEquals("none", notFound.getName());     
         
@@ -86,7 +86,7 @@ public class MyBatisMySqlConnectorTest {
         conn.insertUser(inserted);
         assertTrue(inserted.getUserID() != null);        
         assertEquals(7, conn.getAllUsers().size());
-        User temporary = conn.getUserByID(inserted.getUserID());
+        UserDO temporary = conn.getUserByID(inserted.getUserID());
         assertEquals(temporary.getUserID(), inserted.getUserID());
         assertEquals(temporary.getName(), inserted.getName());
         assertEquals(temporary.getAddress(), inserted.getAddress());
@@ -97,7 +97,7 @@ public class MyBatisMySqlConnectorTest {
         updated.setUserID(temporary.getUserID());
         conn.updateUser(updated);
         //using old ID byt the data should be new
-        User tempUpdated = conn.getUserByID(temporary.getUserID());
+        UserDO tempUpdated = conn.getUserByID(temporary.getUserID());
         assertEquals(tempUpdated.getUserID(), temporary.getUserID());
         assertEquals(tempUpdated.getName(), updated.getName());        
         

@@ -6,6 +6,8 @@
 
 package cz.mojespolecnost.tmproject.persistence;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Data object used to communicate with database.
  * 
@@ -15,6 +17,7 @@ package cz.mojespolecnost.tmproject.persistence;
  * 
  * @author indian
  */
+@XmlRootElement
 public class UserDO implements User {
     private Integer userID;
     private String name;

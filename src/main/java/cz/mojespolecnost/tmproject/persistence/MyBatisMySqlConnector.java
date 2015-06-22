@@ -40,8 +40,8 @@ public class MyBatisMySqlConnector
     }
     
     
-    public User getUserByID(int userID){
-        User out;
+    public UserDO getUserByID(int userID){
+        UserDO out;
         SqlSession session = sqlSessionFactory.openSession();
         try {
             UserMapper mapper = session.getMapper(UserMapper.class);
@@ -52,7 +52,7 @@ public class MyBatisMySqlConnector
         }         
     }
     
-    public List <? extends User> getAllUsers(){
+    public List <UserDO> getAllUsers(){
         SqlSession session = sqlSessionFactory.openSession();       
         try {
             UserMapper mapper = session.getMapper(UserMapper.class);
@@ -62,9 +62,9 @@ public class MyBatisMySqlConnector
         }
     }       
     
-    public void insertUser(User insertedUser){
-        insertUser(new UserDO(insertedUser));
-    }
+//    public void insertUser(User insertedUser){
+//        insertUser(new UserDO(insertedUser));
+//    }
     
     protected void insertUser(UserDO insertedUser){
         SqlSession session = sqlSessionFactory.openSession();       
@@ -88,9 +88,9 @@ public class MyBatisMySqlConnector
         }        
     }
     
-    public void updateUser(User updatedUser){
-        updateUser(new UserDO(updatedUser));
-    }
+//    public void updateUser(User updatedUser){
+//        updateUser(new UserDO(updatedUser));
+//    }
     
     protected void updateUser(UserDO updatedUser){
         SqlSession session = sqlSessionFactory.openSession();       
