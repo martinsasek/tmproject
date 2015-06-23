@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cz.mojespolecnost.tmproject.persistence.UserMapper">
+  
+  <select id="selectUser" parameterType="int" 
+          resultType="cz.mojespolecnost.tmproject.persistence.UserDO">
+   SELECT * FROM User WHERE userID = #{id}
+  </select>
+  
+  <select id="getAllUsers" resultType="cz.mojespolecnost.tmproject.persistence.UserDO">
+   SELECT * FROM User
+  </select> 
+  
+  <insert id="insertUser" parameterType="cz.mojespolecnost.tmproject.persistence.UserDO" useGeneratedKeys="true" keyProperty="userID">
+   INSERT INTO User(name, address, userGroupID)
+    VALUES(#{name}, #{address}, #{userGroupID})
+  </insert> 
+  
+  <update id="updateUser" parameterType="cz.mojespolecnost.tmproject.persistence.UserDO">
+   UPDATE User SET name = #{name}, address = #{address}, userGroupID = #{userGroupID}
+    WHERE userID = #{userID}
+  </update>   
+  
+  <delete id="deleteUser" parameterType="int">
+    DELETE FROM User WHERE userID = #{id}
+  </delete>        
+  
+</mapper>

@@ -24,29 +24,6 @@ public class MessageRestService {
         }
     }
     
-    
-
-//	@GET
-//	@Path("/{param}")
-//	public Response printMessage(@PathParam("param") String msg) {        
-//
-//		String result = "Restful example : " + msg;
-//
-//		return Response.status(200).entity(result).build();
-//
-//	}
-    
-    
-//	@GET
-//	@Path("/firstUser")
-////        @Produces(MediaType.APPLICATION_JSON)
-//	public Response printMessage() {        
-//                
-//                String result = "user : " + conn.getUserByID(1).getName();
-//		
-//		return Response.status(200).entity(result).build();
-//
-//	}
         
 	@GET
 	@Path("/user/{id}")
