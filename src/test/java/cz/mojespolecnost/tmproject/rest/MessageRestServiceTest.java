@@ -5,9 +5,10 @@
  */
 package cz.mojespolecnost.tmproject.rest;
 
-import cz.mojespolecnost.tmproject.application.MessageApplication;
-import cz.mojespolecnost.tmproject.utils.RemoteUtil;
+import cz.mojespolecnost.tmproject.persistence.UserDO;
 import java.io.IOException;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -64,9 +65,9 @@ public class MessageRestServiceTest {
 
     
     @Test
-    public void testGetUserByID() throws Exception{
+    public void testGetUserById() throws Exception{
         ResteasyClient client = new ResteasyClientBuilder().build();
-        Response response = client.target(rootUri+"message/user/1").request().get();
+        Response response = client.target(rootUri+"users/1").request().get();
 //        UserDO user = (UserDO) response.getEntity();
 //        System.out.println(response.toString());
         String user = response.readEntity(String.class);
@@ -78,6 +79,50 @@ public class MessageRestServiceTest {
 //        System.out.println(user);        
         assertTrue(user.contains("Tonik"));        
         
+    }   
+    
+    @Test
+    public void testCreateRemoveUser() throws Exception{
+        UserDO newUser = new UserDO("Tempik", "Tempikova", 3);        
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        
+        Response response = client.target(rootUri+"users").request()
+                .post(Entity.json(newUser)); 
+        UserDO user = response.readEntity(UserDO.class);
+        assertTrue (user != null);
+        assertEquals(user.getName(), "Tempik");
+        assertTrue(user.getUserID() > 6);
+//        assertTrue(user.contains("7"));        
+        
+        response = client.target(rootUri+"users/"+user.getUserID()).request().delete();
+        System.out.println("delete worked "+response.getStatusInfo());
+        assertEquals(204, response.getStatus());
+        
+//        //should be 6 users at the end
+//        response = client.target(rootUri+"users/numberOfUsers").request().get();
+//        String userCount = response.readEntity(String.class);
+//        assertEquals("6", userCount);        
+        
+        
+        
+        
+    }       
+    
+    @Test
+    public void testGetAllUsers() throws Exception{
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        Response response = client.target(rootUri+"users").request().get();
+        String allUsers = response.readEntity(String.class);
+        assertTrue(allUsers.contains("Tonik"));
+        assertTrue(allUsers.contains("Roman"));
     }    
+    
+//    @Test
+//    public void testGetNumberOfUsers() throws Exception{
+//        ResteasyClient client = new ResteasyClientBuilder().build();
+//        Response response = client.target(rootUri+"users/numberOfUsers").request().get();
+//        String userCount = response.readEntity(String.class);
+//        assertEquals("6", userCount);        
+//    }      
     
 }

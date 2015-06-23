@@ -60,18 +60,29 @@ public class MyBatisMySqlConnector
         } finally {
             session.close();
         }
-    }       
+    }      
+    
+    public int getNumberOfUsers(){
+        SqlSession session = sqlSessionFactory.openSession();       
+        try {
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            return mapper.getAllUsers().size();
+        } finally {
+            session.close();
+        }
+    }         
     
 //    public void insertUser(User insertedUser){
 //        insertUser(new UserDO(insertedUser));
 //    }
     
-    protected void insertUser(UserDO insertedUser){
+    public UserDO insertUser(UserDO insertedUser){
         SqlSession session = sqlSessionFactory.openSession();       
         try {
             UserMapper mapper = session.getMapper(UserMapper.class);
             mapper.insertUser(insertedUser);
             session.commit();
+            return insertedUser;
         } finally {
             session.close();
         }        
@@ -92,7 +103,7 @@ public class MyBatisMySqlConnector
 //        updateUser(new UserDO(updatedUser));
 //    }
     
-    protected void updateUser(UserDO updatedUser){
+    public void updateUser(UserDO updatedUser){
         SqlSession session = sqlSessionFactory.openSession();       
         try {
             UserMapper mapper = session.getMapper(UserMapper.class);
