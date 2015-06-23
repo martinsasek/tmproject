@@ -25,11 +25,17 @@
       <artifactId>mybatis</artifactId>
       <version>3.2.8</version>
     </dependency>  
+
+    <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-client</artifactId>
+    <version>3.0.9.Final</version>     
+    </dependency>
+    
     <dependency>
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-jaxrs</artifactId>
-    <version>3.0.9.Final</version>
-     
+    <version>3.0.9.Final</version>     
     </dependency>
     
     <dependency>
@@ -59,12 +65,12 @@
      <version>3.0.9.Final</version>
      
     </dependency>
-    <dependency>
+    <!--<dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
         <version>4.1.2</version>
      
-    </dependency>
+    </dependency>-->
 
   </dependencies>
 </project>
