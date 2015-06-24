@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author indian
  */
 @XmlRootElement
-public class UserDO implements User {
+public class UserDO {
     private Integer userID;
     private String name;
     private String address;
@@ -62,8 +62,7 @@ public class UserDO implements User {
     public String toString() {
         return "User{" + "userID=" + userID + ", name=" + name + ", address=" + address + ", userGroupID=" + userGroupID + '}';
     }
-
-    @Override
+    
     public Integer getUserID() {
         return userID;
     }
@@ -72,7 +71,7 @@ public class UserDO implements User {
         this.userID = userID;
     }
 
-    @Override
+
     public String getName() {
         return name;
     }
@@ -81,7 +80,7 @@ public class UserDO implements User {
         this.name = name;
     }
 
-    @Override
+
     public String getAddress() {
         return address;
     }
@@ -90,7 +89,7 @@ public class UserDO implements User {
         this.address = address;
     }
 
-    @Override
+
     public Integer getUserGroupID() {
         return userGroupID;
     }

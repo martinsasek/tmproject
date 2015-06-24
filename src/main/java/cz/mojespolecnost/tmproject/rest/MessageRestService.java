@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 @Path("/users")
 public class MessageRestService {
     private static MyBatisMySqlConnector conn;
+    private static final String TYPE = MediaType.APPLICATION_XML;
     
     static{
         try{                
@@ -31,21 +32,21 @@ public class MessageRestService {
         
 	@GET
 	@Path("/{id}")
-        @Produces(MediaType.APPLICATION_JSON)
+        @Produces(TYPE)
 	public UserDO getUserById(@PathParam("id") int id) {        		
 		return conn.getUserByID(id);
 	}      
         
 	@GET
 	@Path("/numberOfUsers")
-        @Produces(MediaType.APPLICATION_JSON)
+        @Produces(TYPE)
 	public int getUserById() {        		
 		return conn.getNumberOfUsers();
 	}      
         
         
 	@GET
-        @Produces(MediaType.APPLICATION_JSON)
+        @Produces(TYPE)
 	public List<UserDO> getAllUsers() {        		
 		return conn.getAllUsers();
 	}      
@@ -53,7 +54,7 @@ public class MessageRestService {
         
 	@GET
 	@Path("/dummyUser")
-        @Produces(MediaType.APPLICATION_JSON)
+        @Produces(TYPE)
         public Response dummyUser() {        
                 
                 String result = "user : " + "dummy user";
@@ -63,15 +64,15 @@ public class MessageRestService {
 
         
 	@POST	
-        @Consumes(MediaType.APPLICATION_JSON)
-        @Produces(MediaType.APPLICATION_JSON)
+        @Consumes(TYPE)
+        @Produces(TYPE)
 	public UserDO createUser(UserDO user) {        		
 		return conn.insertUser(user);
 	}      
         
 	@DELETE
 	@Path("/{id}")
-        @Produces(MediaType.APPLICATION_JSON)
+        @Produces(TYPE)
 	public void removeUser(@PathParam("id") int id) {        		
 		conn.deleteUser(id);
 	}          
