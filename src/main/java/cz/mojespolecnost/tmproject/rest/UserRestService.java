@@ -14,9 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-//http://localhost:8080/RESTfulExample/rest/message/hello%20world
+//http://localhost:8080/tmproject/rest/users
 @Path("/users")
-public class MessageRestService {
+public class UserRestService {
     private static MyBatisMySqlConnector conn;
     private static final String TYPE = MediaType.APPLICATION_XML;
     

@@ -9,7 +9,7 @@ package cz.mojespolecnost.tmproject.persistence;
 import java.util.List;
 
 /**
- *
+ * Interface for MyBatis mapping.
  * @author indian
  */
 public interface UserMapper {

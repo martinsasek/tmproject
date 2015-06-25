@@ -100,8 +100,8 @@
         <configuration>
             <!-- because some of the rest tests don't work until deployed and cannot be deployed if not tested
               so we use false for testing, true for deploy
-              very ugly-->
-            <skipTests>true</skipTests> 
+              very ugly, but no better way suceeded so far-->
+            <skipTests>false</skipTests> 
         </configuration>
       </plugin>
     </plugins>

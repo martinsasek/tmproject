@@ -18,6 +18,9 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 
 /**
+ * Tests are directly acessing database, so this should be configured to
+ * access a given testing database that is provided in 
+ * "testingDB/topomonksTesting.sql".
  * @author indian
  */
 public class MyBatisMySqlConnectorTest {
@@ -72,9 +75,8 @@ public class MyBatisMySqlConnectorTest {
     
     @org.junit.Test
     public void testGetAllUsers() {
-        List<? extends User> allUsers = conn.getAllUsers();
+        List<UserDO> allUsers = conn.getAllUsers();
         //SPOCK to test all elements?
-//        assertEquals(6, allUsers.size());
         assertEquals(3, (int) allUsers.get(2).getUserID());        
     }    
     

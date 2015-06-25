@@ -9,12 +9,8 @@ package cz.mojespolecnost.tmproject.persistence;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Data object used to communicate with database.
- * 
- * Implements User interface so it can be used also in communication with 
- * other layers.
- * 
- * 
+ * Data object used to send user info through all the layers. 
+ *  
  * @author indian
  */
 @XmlRootElement
@@ -37,21 +33,21 @@ public class UserDO {
         this.userGroupID = userGroupID;
     }
     
-    /**
-     * Transfers all info from User to UserDO, used to convert
-     * communication of MyBatisMySqlConnector in User interfaces
-     * to the communication with MySQL database in UserDO.
-     * 
-     * @param user 
-     */
-    public UserDO(User user){
-        if (user.getUserID() != null){
-            this.userID = new Integer(user.getUserID());
-        }        
-        this.name = new String(user.getName());
-        this.address = new String(user.getAddress());
-        this.userGroupID = new Integer(user.getUserGroupID());
-    }
+//    /**
+//     * Transfers all info from User to UserDO, used to convert
+//     * communication of MyBatisMySqlConnector in User interfaces
+//     * to the communication with MySQL database in UserDO.
+//     * 
+//     * @param user 
+//     */
+//    public UserDO(User user){
+//        if (user.getUserID() != null){
+//            this.userID = new Integer(user.getUserID());
+//        }        
+//        this.name = new String(user.getName());
+//        this.address = new String(user.getAddress());
+//        this.userGroupID = new Integer(user.getUserGroupID());
+//    }
 
     public UserDO() {
     }

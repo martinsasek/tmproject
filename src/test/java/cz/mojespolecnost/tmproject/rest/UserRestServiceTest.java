@@ -21,20 +21,32 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Tests the rest service against live deplyment on e.g. Glassfish server.
+ * Tried to use TJWS but did not succeed so far.
+ * 
+ * Worked in a way that I skipped tests using pom.xml and then allowed tests
+ * in pom.xml and run unit tests. It is a very ugly way to do, but there were to
+ * many other things to learn so far. It still made sense because it allowed 
+ * me to test service before I started to create frontend.
+ * 
+ * Preffered way would be to use TJWS and maybe also a dummy simple test service, 
+ * that even does not use database.
+ * 
  * @author indian
  */
-public class MessageRestServiceTest {
+public class UserRestServiceTest {
     
     private static int port;    
     private static String rootUri = "http://localhost:8080/tmproject/rest/";
     private static TJWSEmbeddedJaxrsServer server;
     
-    public MessageRestServiceTest() {
+    public UserRestServiceTest() {
     }
     
     @BeforeClass
     public static void setUpClass() throws IOException{
+
+//        Tried to set Tiny Java WebServer for testig bu so far did not suceed  
 //        port = RemoteUtil.findFreePort();
 //        server = new TJWSEmbeddedJaxrsServer();
 //        server.setPort(port);
@@ -87,22 +99,15 @@ public class MessageRestServiceTest {
         ResteasyClient client = new ResteasyClientBuilder().build();
         
         Response response = client.target(rootUri+"users").request()
-                .post(Entity.json(newUser)); 
+                .post(Entity.xml(newUser)); 
         UserDO user = response.readEntity(UserDO.class);
         assertTrue (user != null);
         assertEquals(user.getName(), "Tempik");
-        assertTrue(user.getUserID() > 6);
-//        assertTrue(user.contains("7"));        
+        assertTrue(user.getUserID() > 6);      
         
         response = client.target(rootUri+"users/"+user.getUserID()).request().delete();
         System.out.println("delete worked "+response.getStatusInfo());
-        assertEquals(204, response.getStatus());
-        
-//        //should be 6 users at the end
-//        response = client.target(rootUri+"users/numberOfUsers").request().get();
-//        String userCount = response.readEntity(String.class);
-//        assertEquals("6", userCount);        
-        
+        assertEquals(204, response.getStatus());                
         
         
         
@@ -117,6 +122,9 @@ public class MessageRestServiceTest {
         assertTrue(allUsers.contains("Roman"));
     }    
     
+/**    Does not work right now - two test classes (MyBatisMySQLConnectorTest as well) 
+ *   are acessing  database in paralel - number of users is not guaranteed.
+ */   
 //    @Test
 //    public void testGetNumberOfUsers() throws Exception{
 //        ResteasyClient client = new ResteasyClientBuilder().build();

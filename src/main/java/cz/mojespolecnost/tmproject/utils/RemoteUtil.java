@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 /**
+ * Provides free port for TJWS.
  * <br>
  * <br>
  * Project: diy-mw-core-clients <br>
